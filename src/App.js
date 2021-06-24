@@ -1,21 +1,21 @@
 import Scoreboard from "./components/Scoreboard";
 import InputTable from "./components/InputTable";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
   const [game, setGame] = useState([
     {
+      id: 1,
       name: "Khanh",
       score: [1, 2, 3, 4, 5],
+      input: 0,
     },
   ]);
-  const [matchcount, setMatchcount] = useState(0);
-  // const submitPoint = (event) => {
-  //   event.preventDefault();
-  //   const newmatchcount = matchcount++;
-  //   console.log(newmatchcount);
-  //   setMatchcount(newmatchcount);
-  // };
+
+  useEffect(() => {
+    console.log(game);
+  }, [game]);
+
   //----------------------------------------------------------------
   const [playername, setPlayername] = useState("");
   const handleOnChange = (event) => {
@@ -24,8 +24,9 @@ function App() {
   const onAddPlayer = (event) => {
     event.preventDefault();
     console.log("add");
-    const newscore = new Array(matchcount).fill(0);
+    const newscore = new Array(5).fill(0);
     const newPlayer = {
+      id: game.length + 1,
       name: playername,
       score: newscore,
     };
@@ -39,7 +40,7 @@ function App() {
         <button type="submit">Add Player</button>
       </form>
       <div className="main">
-        <InputTable game={game} />
+        <InputTable game={game} setGame={setGame}/>
         <Scoreboard game={game} />
       </div>
     </div>

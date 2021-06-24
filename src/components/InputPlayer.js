@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 
-const InputPlayer = ({ player }) => {
-  const [score, setScore] = useState(0);
-  const handleOnChange = (event) => {
-    setScore(event.target.value);
-  };
+const InputPlayer = ({ player, game, setGame }) => {
   return (
     <div>
       {player && <div>{player.name}</div>}
-      <input type="text" value={score} onChange={handleOnChange}></input>
+      <input
+        value={player.input}
+        onChange={(e) => {
+          const newPlayer = {...player, input: e.target.value}
+          const newGame = game.map(player => player.id === newPlayer.id ? newPlayer : player)
+          return setGame(newGame)
+        }}
+      />
     </div>
   );
 };

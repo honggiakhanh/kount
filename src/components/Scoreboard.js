@@ -7,7 +7,7 @@ const Scoreboard = ({ game }) => {
       Scoreboard
       <div className="scoreboard">
         {game.map((player) => (
-          <PlayerInfo player={player} />
+          <PlayerInfo id={player.id} player={player} />
         ))}
       </div>
     </div>
