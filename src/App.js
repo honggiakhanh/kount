@@ -4,14 +4,8 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   const [game, setGame] = useState([]);
-  useEffect(() => {
-    console.log(game);
-  }, [game]);
   //------------------------------
   const [matchcount, setMatchcount] = useState(0);
-  useEffect(() => {
-    console.log(matchcount);
-  }, [matchcount])
   //------------------------------
   const [playername, setPlayername] = useState("");
   const handleOnChange = (event) => {
@@ -38,7 +32,7 @@ function App() {
       </form>
       <div className="main">
         <InputTable game={game} setGame={setGame} matchcount={matchcount} setMatchcount={setMatchcount}/>
-        <Scoreboard game={game} setGame={setGame}/>
+        <Scoreboard game={game} setGame={setGame} matchcount={matchcount}/>
       </div>
     </div>
   );

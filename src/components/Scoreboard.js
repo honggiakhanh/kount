@@ -2,13 +2,13 @@ import React from "react";
 import PlayerInfo from "./PlayerInfo";
 import ScoreboardRound from "./ScoreboardRound";
 
-const Scoreboard = ({ game, setGame }) => {
+const Scoreboard = ({ game, setGame, matchcount }) => {
   return (
     <div className="scoreboard-container">
       Scoreboard
       <div className="scoreboard">
-        <ScoreboardRound game={game} setGame={setGame}/>
-        {game.map((player) => (
+        {matchcount === 0 ? "Add a round to see the scoreboard" : <ScoreboardRound game={game} setGame={setGame}/>}
+        {matchcount === 0 ? null : game.map((player) => (
           <PlayerInfo key={player.id} player={player} />
         ))}
       </div>

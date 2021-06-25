@@ -17,11 +17,11 @@ const InputPlayer = ({ player, game, setGame }) => {
         <div
           className="increment-button"
           onClick={() => {
-            const newScore = { ...player, input: (player.input += 1) };
-            const newGame = game.map((player) =>
-              player.id === newScore.id ? newScore : player
+            const newPlayerInputIncrement = { ...player, input: (player.input += 1) };
+            const updatedGame = game.map((player) =>
+              player.id === newPlayerInputIncrement.id ? newPlayerInputIncrement : player
             );
-            setGame(newGame);
+            setGame(updatedGame);
           }}
         >
           +1
@@ -30,21 +30,21 @@ const InputPlayer = ({ player, game, setGame }) => {
           type="number"
           value={player.input}
           onChange={(e) => {
-            const newPlayer = { ...player, input: e.target.value };
-            const newGame = game.map((player) =>
-              player.id === newPlayer.id ? newPlayer : player
+            const newPlayerInput = { ...player, input: e.target.value };
+            const updatedGame = game.map((player) =>
+              player.id === newPlayerInput.id ? newPlayerInput : player
             );
-            return setGame(newGame);
+            return setGame(updatedGame);
           }}
         />
         <div
           className="increment-button"
           onClick={() => {
-            const newScore = { ...player, input: (player.input -= 1) };
-            const newGame = game.map((player) =>
-              player.id === newScore.id ? newScore : player
+            const newPlayerInputIncrement = { ...player, input: (player.input -= 1) };
+            const updatedGame = game.map((player) =>
+              player.id === newPlayerInputIncrement.id ? newPlayerInputIncrement : player
             );
-            setGame(newGame);
+            setGame(updatedGame);
           }}
         >
           -1
