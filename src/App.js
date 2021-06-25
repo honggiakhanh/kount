@@ -3,20 +3,16 @@ import InputTable from "./components/InputTable";
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [game, setGame] = useState([
-    {
-      id: 1,
-      name: "Khanh",
-      score: [1, 2, 3, 4, 5],
-      input: 0,
-    },
-  ]);
-
+  const [game, setGame] = useState([]);
   useEffect(() => {
     console.log(game);
   }, [game]);
-
-  //----------------------------------------------------------------
+  //------------------------------
+  const [matchcount, setMatchcount] = useState(0);
+  useEffect(() => {
+    console.log(matchcount);
+  }, [matchcount])
+  //------------------------------
   const [playername, setPlayername] = useState("");
   const handleOnChange = (event) => {
     setPlayername(event.target.value);
@@ -24,15 +20,16 @@ function App() {
   const onAddPlayer = (event) => {
     event.preventDefault();
     console.log("add");
-    const newscore = new Array(5).fill(0);
+    const newscore = new Array(matchcount).fill(0);
     const newPlayer = {
       id: game.length + 1,
       name: playername,
       score: newscore,
+      input: 0,
     };
     setGame(game.concat(newPlayer));
   };
-  //--------------------------------------------------------
+  //------------------------------
   return (
     <div className="container">
       <form className="form" onSubmit={onAddPlayer}>
@@ -40,8 +37,8 @@ function App() {
         <button type="submit">Add Player</button>
       </form>
       <div className="main">
-        <InputTable game={game} setGame={setGame}/>
-        <Scoreboard game={game} />
+        <InputTable game={game} setGame={setGame} matchcount={matchcount} setMatchcount={setMatchcount}/>
+        <Scoreboard game={game} setGame={setGame}/>
       </div>
     </div>
   );

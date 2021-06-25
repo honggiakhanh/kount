@@ -5,7 +5,7 @@ const PlayerInfo = ({ player }) => {
     <div>
       <div> {player.name}</div>
       Score
-      <div className="player-score">{player.score.map((point) => <div>{point}</div>)}</div>
+      <div className="player-score">{player.score.map((point) => <div key={Math.random()*100000}>{point}</div>)}</div>
     </div>
   );
 };
