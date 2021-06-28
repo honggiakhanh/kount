@@ -1,6 +1,12 @@
 import React from "react";
 
-const ScoreboardRound = ({ game, setGame, matchcount, setMatchcount }) => {
+const ScoreboardRound = ({
+  game,
+  setGame,
+  matchcount,
+  setMatchcount,
+  editRound,
+}) => {
   const delRound = (index) => {
     const newGame = game.map((player) => {
       return {
@@ -21,8 +27,9 @@ const ScoreboardRound = ({ game, setGame, matchcount, setMatchcount }) => {
           game[0].score.map((a, index) => {
             return (
               <div style={{ display: "flex" }}>
-                <div key={Math.random() * 100000}>{index + 1}</div>
                 <div onClick={() => delRound(index)}>(del)</div>
+                <div key={Math.random() * 100000}>{index + 1}</div>
+                <div onClick={() => editRound(index)}>(edit)</div>
               </div>
             );
           })}

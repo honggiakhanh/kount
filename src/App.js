@@ -1,17 +1,12 @@
 import Scoreboard from "./components/Scoreboard";
 import InputTable from "./components/InputTable";
-import React, { useState, useEffect } from "react";
+import EditTable from "./components/EditTable";
+import React, { useState } from "react";
 
 function App() {
   const [game, setGame] = useState([]);
-  useEffect(() => {
-    console.log(game)
-  }, [game])
   //------------------------------
   const [matchcount, setMatchcount] = useState(0);
-  useEffect(() => {
-    console.log(matchcount)
-  }, [matchcount])
   //------------------------------
   const [playername, setPlayername] = useState("");
   const handleOnChange = (event) => {
@@ -30,6 +25,26 @@ function App() {
     setGame(game.concat(newPlayer));
   };
   //------------------------------
+  const [editstate, setEditstate] = useState({
+    state: false,
+    round: 0,
+  });
+  const editRound = (index) => {
+    const newGame = game.map((player) => {
+      return {
+        ...player,
+        input: player.score[index],
+      };
+    });
+    const newState = {
+      state: !editstate.state,
+      round: index,
+    };
+    setGame(newGame);
+    console.log("edit", game);
+    setEditstate(newState);
+  };
+  //------------------------------
   return (
     <div className="container">
       <form className="form" onSubmit={onAddPlayer}>
@@ -37,8 +52,30 @@ function App() {
         <button type="submit">Add Player</button>
       </form>
       <div className="main">
-        <InputTable game={game} setGame={setGame} matchcount={matchcount} setMatchcount={setMatchcount}/>
-        <Scoreboard game={game} setGame={setGame} matchcount={matchcount} setMatchcount={setMatchcount}/>
+        {editstate.state ? (
+          <EditTable
+            game={game}
+            setGame={setGame}
+            editstate={editstate}
+            setEditstate={setEditstate}
+          />
+        ) : (
+          <InputTable
+            game={game}
+            setGame={setGame}
+            matchcount={matchcount}
+            setMatchcount={setMatchcount}
+          />
+        )}
+        <Scoreboard
+          game={game}
+          setGame={setGame}
+          matchcount={matchcount}
+          setMatchcount={setMatchcount}
+          editstate={editstate}
+          setEditstate={setEditstate}
+          editRound={editRound}
+        />
       </div>
     </div>
   );
