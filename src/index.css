@@ -1,24 +1,28 @@
-.container {
+.app-container {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
-.main {
+.app-main {
   display: flex;
   justify-content: space-evenly
 }
 
-.input-table {
+.input-table-container {
   border: black solid 1px;
+}
+
+.scoreboard-container {
+  border: black solid 1px;
+}
+
+.scoreboard-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .scoreboard {
-  border: black solid 1px;
-  display: flex;
-}
-
-.player-score {
   display: flex;
   flex-direction: column;
 }

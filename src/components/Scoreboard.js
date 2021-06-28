@@ -11,7 +11,7 @@ const Scoreboard = ({
 }) => {
   return (
     <div className="scoreboard-container">
-      Scoreboard
+      <div className="scoreboard-text">Scoreboard</div>
       <div className="scoreboard">
         {matchcount === 0 ? (
           "Add a round to see the scoreboard"

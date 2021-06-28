@@ -1,10 +1,10 @@
 import React from "react";
 
-const InputPlayer = ({ player, game, setGame }) => {
+const InputPlayer = ({ player, game, setGame, increment }) => {
   const delRound = () => {
     setGame((prevState) => prevState.filter((n) => n.id !== player.id));
   };
-  const increment = (i) => {
+  const incrementinput = (i) => {
     const newPlayerInputIncrement = {
       ...player,
       input: (player.input += i),
@@ -22,24 +22,31 @@ const InputPlayer = ({ player, game, setGame }) => {
       player.id === newPlayerInput.id ? newPlayerInput : player
     );
     return setGame(updatedGame);
-  }
+  };
   return (
     <div className="input-player-container">
-      <div className="input-player-info">
+      <div className="input-player-delete">
         {player && <div>{player.name}</div>}
         <div onClick={() => delRound()}>(del)</div>
       </div>
       <div className="input-player">
-        <div className="increment-button" onClick={() => increment(-1)}>
-          -1
+        <div
+          className="increment-button"
+          onClick={() => incrementinput(-increment)}
+        >
+          -{increment}
         </div>
         <input
+          className="input-player-input"
           type="number"
           value={player.input}
           onChange={(e) => handleOnChange(e)}
         />
-        <div className="increment-button" onClick={() => increment(1)}>
-          +1
+        <div
+          className="increment-button"
+          onClick={() => incrementinput(increment)}
+        >
+          +{increment}
         </div>
       </div>
     </div>

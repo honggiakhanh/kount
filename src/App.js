@@ -46,12 +46,19 @@ function App() {
   };
   //------------------------------
   return (
-    <div className="container">
-      <form className="form" onSubmit={onAddPlayer}>
-        <input type="text" value={playername} onChange={handleOnChange}></input>
-        <button type="submit">Add Player</button>
+    <div className="app-container">
+      <form className="app-addplayer-form" onSubmit={onAddPlayer}>
+        <input
+          className="app-addplayer-input"
+          type="text"
+          value={playername}
+          onChange={handleOnChange}
+        ></input>
+        <button className="app-addplayer-button" type="submit">
+          Add Player
+        </button>
       </form>
-      <div className="main">
+      <div className="app-main">
         {editstate.state ? (
           <EditTable
             game={game}

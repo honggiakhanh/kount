@@ -20,16 +20,16 @@ const ScoreboardRound = ({
   };
   return (
     <div>
-      <div>Name</div>
-      <div>Round</div>
-      <div className="player-score">
+      <div className="Scoreboard-text">Name</div>
+      <div className="Scoreboard-text">Round</div>
+      <div className="Scoreboard-round-container">
         {game[0] &&
           game[0].score.map((a, index) => {
             return (
-              <div style={{ display: "flex" }}>
-                <div onClick={() => delRound(index)}>(del)</div>
-                <div key={Math.random() * 100000}>{index + 1}</div>
-                <div onClick={() => editRound(index)}>(edit)</div>
+              <div className="Scoreboard-round" style={{ display: "flex" }}>
+                <div className="Scoreboard-round-delete" onClick={() => delRound(index)}>(del)</div>
+                <div className="Scoreboard-round-single" key={Math.random() * 100000}>{index + 1}</div>
+                <div className="Scoreboard-round-edit" onClick={() => editRound(index)}>(edit)</div>
               </div>
             );
           })}

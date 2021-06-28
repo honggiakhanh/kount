@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import InputPlayer from "./InputPlayer";
+import IncrementEdit from "./IncrementEdit";
 
 const InputTable = ({ game, setGame, matchcount, setMatchcount }) => {
+  const [increment, setIncrement] = useState(1)
   const onScoreSubmit = (event) => {
     event.preventDefault();
     const newRound = game.map((player) => {
@@ -18,8 +20,8 @@ const InputTable = ({ game, setGame, matchcount, setMatchcount }) => {
   };
   return (
     <div className="input-table-container">
-      Input Table
-      <form className="input-table" onSubmit={onScoreSubmit}>
+      <div className="input-table">Input Table</div>
+      <form className="input-table-form" onSubmit={onScoreSubmit}>
         {game &&
           game.map((player) => (
             <InputPlayer
@@ -27,14 +29,16 @@ const InputTable = ({ game, setGame, matchcount, setMatchcount }) => {
               player={player}
               game={game}
               setGame={setGame}
+              increment={increment}
             />
           ))}
         {game.length === 0 ? (
           "Add a player to add scores"
         ) : (
-          <button type="submit">Submit</button>
+          <button className="input-table-button" type="submit">Submit</button>
         )}
       </form>
+      <IncrementEdit increment={increment} setIncrement={setIncrement}/>
     </div>
   );
 };
