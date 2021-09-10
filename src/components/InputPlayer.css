@@ -1,0 +1,19 @@
+.input-player-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.input-player-info {
+    display: flex;
+    flex-direction: space-between;
+    align-items: center;
+}
+.input-player-name {
+    font-size: 1rem;
+}
+
+.input-player {
+    display: flex;
+    align-items: center;
+}
+

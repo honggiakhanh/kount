@@ -1,8 +1,8 @@
 import React from "react";
 import InputPlayer from "./InputPlayer";
+import Button from "@material-ui/core/Button";
 
-const EditTable = ({ game, setGame, editstate, setEditstate }) => {
-  console.log("edit table", game);
+const EditTable = ({ game, setGame, editstate, setEditstate, increment, setIncrement }) => {
   const edit = (event) => {
     const newGame = game.map((player) => {
       const newScore = player.score.map((score, index) =>
@@ -28,15 +28,12 @@ const EditTable = ({ game, setGame, editstate, setEditstate }) => {
               player={player}
               game={game}
               setGame={setGame}
+              increment={increment}
             />
           ))}
-        <button
-          className="input-table-button"
-          onClick={(event) => edit()}
-          type="submit"
-        >
+        <Button className="input-table-button" onClick={() => edit()}>
           Edit
-        </button>
+        </Button>
       </form>
     </div>
   );

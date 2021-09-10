@@ -1,0 +1,4 @@
+.input-table-form {
+    display: flex;
+    flex-direction: column;
+}

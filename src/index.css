@@ -1,37 +1,9 @@
-.app-container {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+* {
+  padding: 1px;
+  margin: 1px;
+  box-sizing: border-box;
 }
 
-.app-main {
-  display: flex;
-  justify-content: space-evenly
-}
-
-.input-table-container {
-  border: black solid 1px;
-}
-
-.scoreboard-container {
-  border: black solid 1px;
-}
-
-.scoreboard-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.scoreboard {
-  display: flex;
-  flex-direction: column;
-}
-
-.input-player {
-  display: flex;
-}
-
-.input-player-info {
-  display: flex;
-  justify-content: center;
+body {
+  font-family: 'Open Sans', sans-serif;
 }

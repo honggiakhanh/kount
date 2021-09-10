@@ -1,9 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import InputPlayer from "./InputPlayer";
-import IncrementEdit from "./IncrementEdit";
+import "./InputTable.css";
+import Button from "@material-ui/core/Button";
 
-const InputTable = ({ game, setGame, matchcount, setMatchcount }) => {
-  const [increment, setIncrement] = useState(1)
+const InputTable = ({
+  game,
+  setGame,
+  matchcount,
+  setMatchcount,
+  increment,
+  setIncrement,
+}) => {
   const onScoreSubmit = (event) => {
     event.preventDefault();
     const newRound = game.map((player) => {
@@ -20,25 +27,21 @@ const InputTable = ({ game, setGame, matchcount, setMatchcount }) => {
   };
   return (
     <div className="input-table-container">
-      <div className="input-table">Input Table</div>
+      <div className="input-table-title">Input Table</div>
       <form className="input-table-form" onSubmit={onScoreSubmit}>
-        {game &&
-          game.map((player) => (
-            <InputPlayer
-              key={player.id}
-              player={player}
-              game={game}
-              setGame={setGame}
-              increment={increment}
-            />
-          ))}
-        {game.length === 0 ? (
-          "Add a player to add scores"
-        ) : (
-          <button className="input-table-button" type="submit">Submit</button>
-        )}
+        {game.map((player) => (
+          <InputPlayer
+            key={player.id}
+            player={player}
+            game={game}
+            setGame={setGame}
+            increment={increment}
+          />
+        ))}
+        <Button className="input-table-button" type="submit">
+          Submit
+        </Button>
       </form>
-      <IncrementEdit increment={increment} setIncrement={setIncrement}/>
     </div>
   );
 };

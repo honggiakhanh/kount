@@ -1,13 +1,18 @@
 import React from "react";
+import "./InputPlayer.css";
+import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
+import Grid from '@material-ui/core/Grid';
 
-const InputPlayer = ({ player, game, setGame, increment }) => {
-  const delRound = () => {
+const InputPlayer = ({ player, game, setGame, increment, setMatchcount }) => {
+  const delPlayer = () => {
     setGame((prevState) => prevState.filter((n) => n.id !== player.id));
   };
   const incrementinput = (i) => {
     const newPlayerInputIncrement = {
       ...player,
-      input: (player.input += i),
+      input: (player.input += Number(i)),
     };
     const updatedGame = game.map((player) =>
       player.id === newPlayerInputIncrement.id
@@ -16,40 +21,45 @@ const InputPlayer = ({ player, game, setGame, increment }) => {
     );
     setGame(updatedGame);
   };
-  const handleOnChange = (e) => {
-    const newPlayerInput = { ...player, input: e.target.value };
-    const updatedGame = game.map((player) =>
-      player.id === newPlayerInput.id ? newPlayerInput : player
-    );
-    return setGame(updatedGame);
-  };
   return (
-    <div className="input-player-container">
-      <div className="input-player-delete">
-        {player && <div>{player.name}</div>}
-        <div onClick={() => delRound()}>(del)</div>
-      </div>
-      <div className="input-player">
-        <div
-          className="increment-button"
+    <Grid container className="input-player-container" direction="row" justify="space-between" alignItems="center">
+      <Grid item className="input-player-info">
+        <div className="input-player-name">
+          {player && <div>{player.name}</div>}
+        </div>
+        <IconButton
+          size="small"
+          className="input-player-del-button"
+          onClick={() => delPlayer()}
+        >
+          <DeleteIcon size="small" />
+        </IconButton>
+      </Grid>
+      <Grid className="input-player">
+        <IconButton
+          size="small"
+          className="input-player-increment-button"
           onClick={() => incrementinput(-increment)}
         >
           -{increment}
-        </div>
-        <input
+        </IconButton>
+        <Button
+          size="large"
           className="input-player-input"
-          type="number"
-          value={player.input}
-          onChange={(e) => handleOnChange(e)}
-        />
-        <div
-          className="increment-button"
+          onClick={null}
+          color="primary"
+        >
+          {player.input}
+        </Button>
+        <IconButton
+          size="small"
+          className="input-player-increment-button"
           onClick={() => incrementinput(increment)}
         >
           +{increment}
-        </div>
-      </div>
-    </div>
+        </IconButton>
+      </Grid>
+    </Grid>
   );
 };
 
